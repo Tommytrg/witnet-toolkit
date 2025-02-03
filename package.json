@@ -30,12 +30,18 @@
     "test": "cross-env-shell WITNET_TOOLKIT_REQUIRE_PATH='../../../witnet' node ./src/bin/toolkit.js"
   },
   "dependencies": {
+    "@noble/ciphers": "^1.2.0",
+    "@noble/curves": "^1.8.0",
+    "@noble/hashes": "^1.7.0",
+    "@scure/base": "^1.2.1",
+    "@scure/bip39": "^1.5.1",
     "axios": "1.7.9",
     "cbor": "10.0.3",
     "crypto": "^1.0.1",
     "dotenv": "^16.4.1",
     "graphql-query-compress": "1.2.4",
-    "protobufjs": "^7.4.0"
+    "protobufjs": "^7.4.0",
+    "vitest": "^2.1.8"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

@@ -1,3 +1,5 @@
+import { secp256k1 } from '@noble/curves/secp256k1';
+
 import { RadonRequest, RadonSLA, } from "../radon"
 import { Node, } from "./node"
 import { IProvider, } from "./provider"
@@ -92,4 +94,15 @@ export class Wallet implements IWallet {
         // TODO
         throw "Not implemented"
     }
+
+    public async sign(msg: string, privKey: string): Promise<string> {
+        // const privKey = secp256k1.utils.randomPrivateKey(); // Secure random private key
+        const msgBytes = Buffer.from(msg, 'utf8')
+        // const pubKey = secp256k1.getPublicKey(privKey);
+        const privKeyBytes = Uint8Array.from(Buffer.from(privKey, 'hex'))
+        const signature = await secp256k1.sign(msgBytes, privKeyBytes); // Sync methods below
+        // const isValid = secp256k1.verify(signature, msgBytes, pubKey);
+        return signature.toCompactHex()
+    }
 }
+
