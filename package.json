@@ -30,8 +30,8 @@
   "scripts": {
     "build": "pbjs --target json witnet/witnet.proto -o witnet/witnet.proto.json && tsc -p tsconfig.json",
     "fmt": "eslint --ext .js,.ts,.cjs . --ignore-path .gitignore",
-    "fmt!": "biome check --write test/",
-    "postinstall": "biome check test/",
+		"fmt!": "biome check --write */**/*.{js,ts,cjs}",
+    "postinstall": "biome check */**/*.{js,ts,cjs}",
     "prepare": "pnpm run build",
     "test": "cross-env-shell WITNET_TOOLKIT_ASSETS_PATH='../../../witnet/assets' node ./src/bin/toolkit.js",
     "test:unit": "vitest"
