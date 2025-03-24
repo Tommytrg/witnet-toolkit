@@ -62,14 +62,14 @@ export class Provider implements IProvider {
     protected _constants?: ConsensusConstants
     protected _headers: AxiosHeaders;
     
-    static async initialized(url?: string): Promise<Provider> {
-        const provider = new Provider(url || "https://rpc.witnet.io")
-        return provider.constants().then(() => provider)
-    }
+    // static async initialized(url?: string): Promise<Provider> {
+    //     const provider = new Provider(url || "https://rpc.witnet.io")
+    //     return provider.constants().then(() => provider)
+    // }
 
-    constructor(url: string) {
+    constructor(url?: string) {
         this.endpoints = []
-        if (url !== undefined) {
+        if (!!url) {
             const urls = url.replaceAll(',', ';').split(';')
             urls.forEach(url => {
                 const [schema, ] = utils.parseURL(url)
@@ -97,7 +97,7 @@ export class Provider implements IProvider {
                 url,
                 {
                     jsonrpc: '2.0',
-                    id: + new Date(),
+                    id: Date.now(),
                     method,
                     params,
                 },
